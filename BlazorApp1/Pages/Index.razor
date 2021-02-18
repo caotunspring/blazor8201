@@ -1,0 +1,73 @@
+﻿@page "/"
+
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<style>
+    table.gridtable {
+        font-family: verdana, arial, sans-serif;
+        font-size: 92%;
+        color: black;
+        border-width: 1px;
+        border-color: #666666;
+        border-collapse: collapse;
+    }
+
+        table.gridtable th {
+            text-align: center;
+            align-content: center;
+            align-items: center;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+</style>
+<h1>取 appsettings 設定值</h1>
+
+<hr />
+<table class="gridtable">
+    <tr>
+        <th>設定</th>
+        <th>值</th>
+    </tr>
+
+    <tr>
+        <th>Setting001</th>
+        <td>@setting001</td>
+    </tr>
+    <tr>
+        <th>Setting002</th>
+        <td>@setting002</td>
+    </tr>
+
+
+</table>
+
+<hr />
+<h3>要點筆記:</h3>
+<ul>
+    <li>DI IConfiguration</li>
+    <li>using Microsoft.Extensions.Configuration</li>
+    <li>如果 Setting002 中文顯示有問題, 要將appsettings.json保存為 Unicode</li>
+
+</ul>
+@code{
+    string setting001 = "";
+    string setting002 = "";
+
+    protected override void OnInitialized()
+    {
+        setting001 = Configuration["Setting001"];
+        setting002 = Configuration["Setting002"];
+    }
+
+}
